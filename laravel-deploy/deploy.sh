@@ -5,7 +5,7 @@ SCRIPT_TITLE="Laravel Deployment Script"
 SCRIPT_VERSION="1.0"
 SCRIPT_AUTHOR="Santanu Biswas"
 SCRIPT_AUTHOR_WEBSITE="https://www.meetsantanu.in/"
-SCRIPT_GITHUB="https://github.com/mrsanta79/shell-scripts/main/laravel-deploy"
+SCRIPT_GITHUB="https://github.com/mrsanta79/shell-scripts/tree/main/laravel-deploy"
 SCRIPT_DESCRIPTION="This script will install and configure a LAMP stack for your Laravel application on your freshly installed Ubuntu server."
 
 # Colors
