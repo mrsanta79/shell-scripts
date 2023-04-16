@@ -1,10 +1,8 @@
-<h3 align='center'>Laravel Application Deployment Script</h3>
+<h2 align='center'>Laravel Application Deployment Script</h2>
 
----
+<h3 align='center'> This script will install and configure a LAMP stack for your Laravel application on your freshly installed Ubuntu server within minutes.</h3>
 
-<h6 align='center'> This script will install and configure a LAMP stack for your Laravel application on your freshly installed Ubuntu server within minutes.</h6>
-
-#### Features
+### Features
 
 ```text
 - Apache
@@ -16,16 +14,14 @@
 - PHP upload max file size and maximum ram allocation size increased to 512M
 ```
 
-#### Prerequisites
-
-What things you need to install the software and how to install them.
+### Prerequisites
 
 ```text
 - Freshly installed Ubuntu Server (Preferred 20.04 or greater)
 - Make sure you have superuser (sudo) privilege.
 ```
 
-#### Deployment
+### Deployment
 
 ```sh
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/mrsanta79/shell-scripts/main/laravel-deploy/deploy.sh)"
