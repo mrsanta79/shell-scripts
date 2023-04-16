@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 # Script info
 SCRIPT_TITLE="Laravel Deployment Script"
