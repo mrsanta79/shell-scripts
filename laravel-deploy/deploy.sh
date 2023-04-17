@@ -57,7 +57,7 @@ echo -n "\n${LGRAY}Enter website domain name (example: example.com): " && read s
 site_domain=${site_domain:-example.com}
 
 # Start installation
-echo "\n${PURPLE}Starting installation...\n"
+echo "\n${PURPLE}Starting installation...\n${NC}"
 
 # Update Ubuntu's package index
 sudo apt update
@@ -90,7 +90,7 @@ if [ "$install_database" = "y" ]; then
     sudo mysql -u root -p
 
     # Continue installation
-    echo "\n${PURPLE}Continuing installation...\n"
+    echo "\n${PURPLE}Continuing installation...\n${NC}"
 fi
 
 # Install PHP version and necessary extensions
@@ -99,8 +99,8 @@ sudo add-apt-repository -y ppa:ondrej/php
 sudo apt update
 sudo apt install -y curl wget git unzip python3 php$php_version
 sudo update-alternatives --set php /usr/bin/php$php_version
-sudo apt install -y php-{cli,mysql,common,mbstring,xml,curl,mysql,zip,gd,bcmath,imagick,ldap,redis,soap,tidy,xmlrpc,xdebug,dev,bz2,intl,memcached,msgpack,igbinary,ssh2,ldap,redis,smbclient,sqlite3,swoole} \
-    php$php_version-{cli,mysql,common,mbstring,xml,curl,mysql,zip,gd,bcmath,imagick,ldap,redis,soap,tidy,xmlrpc,xdebug,dev,bz2,intl,memcached,msgpack,igbinary,ssh2,ldap,redis,smbclient,sqlite3,swoole}
+sudo apt install -y php-cli php-mysql php-common php-mbstring php-xml php-curl php-mysql php-zip php-gd php-bcmath php-imagick php-ldap php-redis php-soap php-tidy php-xmlrpc php-xdebug php-dev php-bz2 php-intl php-memcached php-igbinary php-redis php-pear
+sudo apt install -y php$php_version-cli php$php_version-mysql php$php_version-common php$php_version-mbstring php$php_version-xml php$php_version-curl php$php_version-mysql php$php_version-zip php$php_version-gd php$php_version-bcmath php$php_version-imagick php$php_version-ldap php$php_version-redis php$php_version-soap php$php_version-tidy php$php_version-xmlrpc php$php_version-xdebug php$php_version-dev php$php_version-bz2 php$php_version-intl php$php_version-memcached php$php_version-igbinary php$php_version-redis
 sudo apt install -y php7.4-json php-json libapache2-mod-php$php_version
 sudo snap install --classic certbot
 
@@ -142,7 +142,7 @@ fi
 npm install -g npm yarn
 
 # Show logout and login warning for nvm
-echo "\n${YELLOW}Please logout and login again to use nvm manually.\n"
+echo "\n${YELLOW}Please logout and login again to use nvm manually.\n${NC}"
 
 # Configure a virtual host for Laravel
 sudo mkdir -p /var/www/$site_dir_name
