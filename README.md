@@ -14,6 +14,7 @@ This repository currently contains the following scripts:
 
 ```text
 - Laravel Application Deployment
+- PHP Version Switch
 ```
 
 ### Contributing
