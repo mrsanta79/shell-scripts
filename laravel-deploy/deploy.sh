@@ -19,6 +19,15 @@ LGRAY='\033[0;37m'
 REDORANGE='\033[0;38m'
 NC='\033[0m' # No color
 
+# Exit if OS is not Ubuntu or Debian
+if [ -f /etc/os-release ]; then
+    . /etc/os-release
+    if [ "$ID" != "ubuntu" ] && [ "$ID_LIKE" != "ubuntu" ] && [ "$ID" != "debian" ] && [ "$ID_LIKE" != "debian" ]; then
+        echo "\n${RED}This script is for Ubuntu and Debian based operating systems only!${NC}\n"
+        exit 1
+    fi
+fi
+
 # Show welcome message
 echo "\n${YELLOW}This script will install and configure a LAMP stack for Laravel application on your Ubuntu server. It is recommended to run this script on a fresh Ubuntu server installation."
 echo "${YELLOW}Before running this script, make sure you have superuser (sudo) privileges."
@@ -93,9 +102,32 @@ if [ "$install_database" = "y" ]; then
     echo "\n${PURPLE}Continuing installation...\n${NC}"
 fi
 
+# Add necessary packages
+sudo apt install -y ca-certificates apt-transport-https software-properties-common
+
+# Check if Ubuntu or Debian
+add_ondrej_for_debian() {
+    curl -sSL https://packages.sury.org/php/README.txt | sudo bash -x
+}
+
+# Add ondrej/php repository if not already added
+add_ondrej_for_ubuntu() {
+    if [ ! -f /etc/apt/sources.list.d/ondrej-php.list ]; then
+        sudo add-apt-repository ppa:ondrej/php -y
+    fi
+}
+
+# Check if Ubuntu or Debian
+if [ -f /etc/os-release ]; then
+    . /etc/os-release
+    if [ "$ID" = "ubuntu" ] || [ "$ID_LIKE" = "ubuntu" ]; then
+        add_ondrej_for_ubuntu
+    elif [ "$ID" = "debian" ] || [ "$ID_LIKE" = "debian" ]; then
+        add_ondrej_for_debian
+    fi
+fi
+
 # Install PHP version and necessary extensions
-sudo apt install -y software-properties-common
-sudo add-apt-repository -y ppa:ondrej/php
 sudo apt update
 sudo apt install -y curl wget git unzip python3 php$php_version
 sudo update-alternatives --set php /usr/bin/php$php_version
