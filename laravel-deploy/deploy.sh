@@ -199,14 +199,17 @@ chmod -R 777 storage bootstrap/cache
 sudo sed -i 's/memory_limit = .*/memory_limit = 512M/' /etc/php/$php_version/apache2/php.ini
 
 # Set php upload limit
-sudo sed -i 's/upload_max_filesize = .*/upload_max_filesize = 512M/' /etc/php/$php_version/apache2/php.ini
+sudo sed -i 's/upload_max_filesize = .*/upload_max_filesize = 256M/' /etc/php/$php_version/apache2/php.ini
+sudo sed -i 's/post_max_size = .*/post_max_size = 256M/' /etc/php/$php_version/apache2/php.ini
 
 # Install laravel dependencies
-composer install
+if [  -f "composer.json" ]; then
+    composer install
+fi
 
 # Installl npm dependencies if package.json exists
 if [ -f "package.json" ]; then
-    sudo npm install
+    npm install
 fi
 
 # Create apache config file

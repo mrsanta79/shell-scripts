@@ -95,4 +95,11 @@ sudo apt install -y php$php_version-cli php$php_version-mysql php$php_version-co
 sudo apt install -y php7.4-json php-json libapache2-mod-php$php_version
 sudo update-alternatives --set php /usr/bin/php$php_version
 
+# Set php memory limit
+sudo sed -i 's/memory_limit = .*/memory_limit = 512M/' /etc/php/$php_version/apache2/php.ini
+
+# Set php upload limit
+sudo sed -i 's/upload_max_filesize = .*/upload_max_filesize = 256M/' /etc/php/$php_version/apache2/php.ini
+sudo sed -i 's/post_max_size = .*/post_max_size = 256M/' /etc/php/$php_version/apache2/php.ini
+
 echo "\n${PURPLE}Installation of PHP ${php_version} finished!\n"
