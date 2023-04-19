@@ -22,7 +22,7 @@ NC='\033[0m' # No color
 # Exit if OS is not Ubuntu or Debian
 if [ -f /etc/os-release ]; then
     . /etc/os-release
-    if [ "$ID" != "ubuntu" ] && [ "$ID_LIKE" != "ubuntu" ] && [ "$ID" != "debian" ] && [ "$ID_LIKE" != "debian" ]; then
+    if [ "$ID" != "ubuntu" ] && [ "$ID_LIKE" != "ubuntu" ] && [ "$ID" != "debian" ] && [ "$ID_LIKE" != "debian" ] && [ "$ID_LIKE" != "ubuntu debian" ]; then
         echo "\n${RED}This script is for Ubuntu and Debian based operating systems only!${NC}\n"
         exit 1
     fi
@@ -78,7 +78,7 @@ add_ondrej_for_ubuntu() {
 # Check if Ubuntu or Debian
 if [ -f /etc/os-release ]; then
     . /etc/os-release
-    if [ "$ID" = "ubuntu" ] || [ "$ID_LIKE" = "ubuntu" ]; then
+    if [ "$ID" = "ubuntu" ] || [ "$ID_LIKE" = "ubuntu" ] || [ "$ID_LIKE" = "ubuntu debian" ]; then
         add_ondrej_for_ubuntu
     elif [ "$ID" = "debian" ] || [ "$ID_LIKE" = "debian" ]; then
         add_ondrej_for_debian
@@ -89,10 +89,11 @@ fi
 sudo apt update
 
 # Install PHP version and necessary extensions
-sudo apt install -y php$php_version
-sudo apt install -y php$php_version-common php$php_version-curl php$php_version-dom php$php_version-filter php$php_version-pcre php$php_version-bcmath php$php_version-mysql php$php_version-ctype php$php_version-fileinfo php$php_version-json php$php_version-mbstring php$php_version-pdo php$php_version-tokenizer php$php_version-xml php$php_version-zip php$php_version-gd php$php_version-imagick php$php_version-pear php$php_version-session
-sudo apt install -y php7.4-json libapache2-mod-php$php_version php$php_version-fpm
+sudo apt install -y php$php_version php$php_version-common php$php_version-cli
 sudo update-alternatives --set php /usr/bin/php$php_version
+sudo apt install -y php$php_version-curl php$php_version-dom php$php_version-filter php$php_version-pcre php$php_version-pear php$php_version-session
+sudo apt install -y php$php_version-bcmath php$php_version-ctype php$php_version-fileinfo php$php_version-json php$php_version-mbstring php$php_version-pdo php$php_version-tokenizer php$php_version-xml php$php_version-zip php$php_version-gd php$php_version-imagick php$php_version-mysql
+sudo apt install -y php7.4-json libapache2-mod-php$php_version php$php_version-fpm
 
 # Set php memory limit
 sudo sed -i 's/memory_limit = .*/memory_limit = 512M/' /etc/php/$php_version/apache2/php.ini
