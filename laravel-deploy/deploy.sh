@@ -249,6 +249,4 @@ php artisan key:generate
 echo "\n\n${BLUE}Laravel application is now deployed and configured.\n"
 echo "\n${BLUE}To finalize the installation, please follow the steps below:\n"
 echo "${BLUE}1. Edit .env file and make necessry changes."
-echo "${BLUE}2. Run 'php artisan migrate:fresh --seed' to migrate database."
-
-# End of script
+echo "${BLUE}2. Run 'php artisan migrate:fresh --seed' to migrate database.\n"
