@@ -97,6 +97,12 @@ sudo apt install -y php$php_version-bcmath php$php_version-ctype php$php_version
 sudo apt install -y php7.4-json libapache2-mod-php$php_version php$php_version-fpm
 sudo apt install -y php$php_version-curl php$php_version-xml
 
+# Install composer
+echo "\n${GREEN}Installing composer...\n${NC}";
+curl https://getcomposer.org/installer -o composer-setup.php \
+    && sudo php composer-setup.php --install-dir=/usr/local/bin --filename=composer \
+    && rm composer-setup.php
+
 # Set php memory limit
 sudo sed -i 's/memory_limit = .*/memory_limit = 512M/' /etc/php/$php_version/apache2/php.ini
 
