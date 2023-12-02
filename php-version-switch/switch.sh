@@ -29,8 +29,14 @@ if [ -f /etc/os-release ]; then
 fi
 
 # Let user select php version or set default
-echo -n "\n${LGRAY}Choose the PHP version you want to install (example: 7.4, 8.0, 8.1, 8.2; default: 8.2): " && read php_version
+echo -n "\n${LGRAY}Choose the PHP version you want to install (example: 7.4, 8.0, 8.1, 8.2, 8.3; default: 8.2): " && read php_version
 php_version=${php_version:-8.2}
+
+# Check if php version is valid
+if [ "$php_version" != "7.4" ] && [ "$php_version" != "8.0" ] && [ "$php_version" != "8.1" ] && [ "$php_version" != "8.2" ] && [ "$php_version" != "8.3" ]; then
+    echo "\n${RED}Invalid PHP version!${NC}\n"
+    exit 1
+fi
 
 # Check if php is already installed
 if [ -x "$(command -v php)" ]; then
