@@ -99,9 +99,9 @@ sudo apt install -y curl wget zip unzip git gnupg ca-certificates
 sudo apt install -y php$php_version php$php_version-common php$php_version-cli
 sudo update-alternatives --set php /usr/bin/php$php_version
 sudo apt install -y php$php_version-filter php$php_version-pcre php$php_version-pear php$php_version-session
-sudo apt install -y php$php_version-bcmath php$php_version-ctype php$php_version-dom php$php_version-fileinfo php$php_version-json php$php_version-mbstring php$php_version-pdo php$php_version-tokenizer php$php_version-imagick
+sudo apt install -y php$php_version-bcmath php$php_version-ctype php$php_version-dom php$php_version-fileinfo php$php_version-json php$php_version-pdo php$php_version-tokenizer php$php_version-imagick
 sudo apt install -y php7.4-json libapache2-mod-php$php_version php$php_version-fpm
-sudo apt install -y php$php_version-curl php$php_version-zip php$php_version-xml php$php_version-gd php$php_version-mysql
+sudo apt install -y php$php_version-curl php$php_version-zip php$php_version-xml php$php_version-gd php$php_version-mysql php$php_version-mbstring
 sudo apt install -y libavif-dev libicu-dev libmcrypt-dev libssl-dev libzip-dev libfreetype-dev libpng-dev libwebp-dev libexif-dev libjpeg62-turbo-dev
 
 # Install composer
